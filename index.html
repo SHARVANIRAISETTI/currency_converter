@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Advanced Currency Converter — Sharvani</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- jsPDF for PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body data-theme="light">
+  <!-- Loader -->
+  <div id="loader" class="loader" aria-hidden="true"></div>
+
+  <div class="container">
+    <header>
+      <div class="nav-left">
+        <div class="logo">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+            <rect width="24" height="24" rx="6" fill="url(#g)"></rect>
+            <defs><linearGradient id="g"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
+          </svg>
+          <span>Currency Converter</span>
+        </div>
+      </div>
+
+      <button id="menuToggle" class="menu-btn" aria-label="Toggle menu">☰</button>
+
+      <nav id="navbar" class="navbar">
+        <select id="themeSwitch" class="theme-select" aria-label="Theme">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+        <span class="nav-user">Sharvani</span>
+      </nav>
+    </header>
+
+    <main>
+      <div class="grid">
+        <!-- Left: converter -->
+        <section class="card">
+          <div class="muted">Real-time Conversion</div>
+          <div class="rate" id="exchangeRate">Fetching rates...</div>
+
+          <hr>
+
+          <div class="input-row">
+            <div class="input-block">
+              <input id="amount" type="text" list="suggestions" placeholder="Ex: 10 USD to INR or 100" />
+              <datalist id="suggestions">
+                <option value="10 USD to INR">
+                <option value="100 INR to USD">
+                <option value="50 EUR to USD">
+                <option value="200 USD to JPY">
+              </datalist>
+            </div>
+
+            <div class="input-block select-row">
+              <select id="fromCurrency" class="flag-select" aria-label="From currency"></select>
+              <button id="favFrom" class="star-btn" aria-label="Favorite from">☆</button>
+            </div>
+
+            <div class="input-block select-row">
+              <select id="toCurrency" class="flag-select" aria-label="To currency"></select>
+              <button id="favTo" class="star-btn" aria-label="Favorite to">☆</button>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="convertBtn">Convert</button>
+            <button id="swapBtn" class="small">Swap</button>
+            <button id="clearHistory" class="small">Clear History</button>
+            <button id="downloadCSV" class="small">CSV</button>
+            <button id="downloadPDF" class="small">PDF</button>
+          </div>
+
+          <div class="result-title">Result</div>
+          <div id="result" class="result-value">—</div>
+
+        </section>
+
+        <!-- Right: history -->
+        <aside class="card">
+          <div class="muted">Conversion History</div>
+          <ul id="history" class="history-list"></ul>
+          <div id="emptyHistory" class="empty">No history yet — do a conversion</div>
+
+          <div style="margin-top:14px" class="muted">Utilities</div>
+          <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+            <button id="refreshRates" class="small">Refresh Rates</button>
+            <button id="populateExample" class="small">Example</button>
+          </div>
+
+          <div style="margin-top:12px" class="footer-note">Rates provided by exchangerate.host (free)</div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
